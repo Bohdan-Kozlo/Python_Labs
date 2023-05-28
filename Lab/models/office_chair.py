@@ -5,20 +5,14 @@ class OfficeChair(Chair):
     """
     The Office Chair class represents an office chair and inherits from the Chair class
     """
+    special_feature = {"Lumbar support"}
 
-    def __init__(self, reneming=2, material="wood", max_weight="150", owner="Bob", chair_type="type",
-                 material_of_upholstery="material", current_incline_back="50"):
+    def __init__(self, id_chair=2, material="wood", max_weight=150, owner="Bob", chair_type="type",
+                 material_of_upholstery="material", current_incline_back=50):
         """
         This method initializes the fields
-        :param reneming:
-        :param material:
-        :param max_weight:
-        :param owner:
-        :param chair_type:
-        :param material_of_upholstery:
-        :param current_incline_back:
         """
-        super().__init__(reneming, material, max_weight, owner)
+        super().__init__(id_chair, material, max_weight, owner)
         self.chair_type = chair_type
         self.material_of_upholstery = material_of_upholstery
         self.current_incline_back = current_incline_back
@@ -34,6 +28,6 @@ class OfficeChair(Chair):
         This method represents the object in the ribbon
         :return:
         """
-        return super().__str__(), f"Chair type={self.chair_type},\
+        return super().__str__().rstrip(), f"Chair type={self.chair_type},\
                 Material of upholstery={self.material_of_upholstery},\
                 Current incline back={self.current_incline_back}"
