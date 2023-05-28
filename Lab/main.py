@@ -1,19 +1,16 @@
-from chair import Chair
+from managers.ChairManager import ChairManager
+from models.Chair import Chair
+from models.FeedingTable import FeedingTable
+from models.GameChair import GameChair
+from models.OfficeChair import OfficeChair
+from models.SoftChair import SoftChair
 
-chair_list = [
-    Chair(),
-    Chair.get_instance(),
-    Chair(2, "Plastic", 100, "Bob")
-]
+chairs = []
 
-for _ in chair_list:
-    print(_)
+manager = ChairManager(chairs)
 
-arr = [i for i in range(1, 11)]
-
-for i in arr:
-    print(i)
-
-for i in arr[::2]:
-    print(i)
-
+manager.add_chair(FeedingTable(1, "wood", 200, 100, 40, 40, "John", 2))
+manager.add_chair(GameChair(1, "leather", 120, "Alex", 25, 100, 15))
+manager.add_chair(OfficeChair(1, "leather", 120, "Alex", "executive", "leather", 45))
+manager.add_chair(SoftChair(1, "suede", 150, "John", "foam", 60, True))
+print(manager.search_by_max_weight(250))
