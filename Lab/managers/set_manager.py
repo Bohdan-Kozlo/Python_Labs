@@ -5,6 +5,7 @@ class SetManager:
         self.chair_manager = chair_manager
         self.special_features = [special_feature for chair in self.chair_manager.chairs for special_feature in
                                  chair.special_feature]
+        self.index = 0
 
     def __iter__(self):
         """
@@ -16,14 +17,13 @@ class SetManager:
         """
         Returns the total number of special features.
         """
-        if not self.special_features:
+        if self.index >= len(self.special_features):
             raise StopIteration
-        return self.special_features.pop()
+        self.index += 1
+        return self.special_features[self.index - 1]
 
     def __getitem__(self, index):
         """
         Returns the special feature at the specified index.
         """
         return self.special_features[index]
-
-

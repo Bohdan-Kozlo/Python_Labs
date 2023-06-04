@@ -1,3 +1,5 @@
+from decorators.decorator import logged
+from exceptions.exeptions import InvalidChairPositionError
 from models.chair import Chair
 
 
@@ -20,11 +22,16 @@ class FeedingTable(Chair):
         self.age_child = age_child
         self.current_height_chair = current_height_chair
 
+    @logged(InvalidChairPositionError, "console")
     def adjust_position(self, value):
         """
         Method that will increase the height of the feeding chair
         """
-        self.current_height_chair += value
+        new_height = self.current_height_chair + value
+        if new_height < self.min_height_chair or new_height > self.max_height_chair:
+            raise InvalidChairPositionError(new_height)
+        else:
+            self.current_height_chair = new_height
 
     def __str__(self):
         """
