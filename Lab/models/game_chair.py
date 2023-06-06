@@ -1,3 +1,5 @@
+from decorators.decorator import logged
+from exceptions.exeptions import InvalidChairPositionError
 from models.chair import Chair
 
 
@@ -21,9 +23,14 @@ class GameChair(Chair):
     def __str__(self):
         """This method represents the object in the ribbon
         """
-        return super().__str__().rstrip(), f"Height of armrests={self.height_of_armrests},\
+        return super().__str__().rstrip() + f",Height of armrests={self.height_of_armrests},\
                 Max height={self.max_height}, \
                 Weight of chair={self.weight_of_chair}"
 
+    @logged(InvalidChairPositionError, "console")
     def adjust_position(self, value):
-        pass
+        new_height = self.height_of_armrests + value
+        if new_height > self.max_height:
+            raise InvalidChairPositionError(new_height)
+        else:
+            self.height_of_armrests = new_height

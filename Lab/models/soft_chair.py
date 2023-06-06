@@ -22,7 +22,7 @@ class SoftChair(Chair):
         This method represents the object in the ribbon
         :return:
         """
-        return super().__str__().rstrip(), f"Filler={self.filler},\
+        return super().__str__().rstrip() + f",Filler={self.filler},\
                 Depth={self.depth},\
                 Cushioning={self.cushioning}"
 

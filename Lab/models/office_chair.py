@@ -28,6 +28,6 @@ class OfficeChair(Chair):
         This method represents the object in the ribbon
         :return:
         """
-        return super().__str__().rstrip(), f"Chair type={self.chair_type},\
+        return super().__str__().rstrip() + f",Chair type={self.chair_type},\
                 Material of upholstery={self.material_of_upholstery},\
                 Current incline back={self.current_incline_back}"
