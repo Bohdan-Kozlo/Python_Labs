@@ -5,16 +5,13 @@ class Chair(ABC):
     """
     This is abstract chair class
     """
+    special_feature = {}
 
-    def __init__(self, reneming=1, material="wood", max_weight="150", owner="Bob"):
+    def __init__(self, id_chair=1, material="wood", max_weight="150", owner="Bob"):
         """
         This method initializes the fields
-        :param reneming:
-        :param material:
-        :param max_weight:
-        :param owner:
         """
-        self.reneming = reneming
+        self.id_chair = id_chair
         self.material = material
         self.max_weight = max_weight
         self.owner = owner
@@ -24,8 +21,16 @@ class Chair(ABC):
         This method represents the object in the ribbon
         :return:
         """
-        return f"Id={self.reneming}, Material={self.material}," \
+        return f"Id={self.id_chair}, Material={self.material}," \
                f" Max weight={self.max_weight}, Owner={self.owner}"
+
+    def get_attributes_by_type(self, data_type):
+        """
+        Returns a dictionary with attributes and their values of the specified data type
+        :param data_type:
+        :return:
+        """
+        return {key: value for key, value in self.__dict__.items() if isinstance(value, data_type)}
 
     def occupy(self, owner):
         """
