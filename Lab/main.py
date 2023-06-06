@@ -23,7 +23,7 @@ for chair in chairs_by_max_wight150:
 for chair in chairs_by_material_wood:
     print(chair.__str__())
 
-adjust_position = manager.adjust_position_for_all_chairs(40)
+adjust_position = manager.adjust_position_for_all_chairs(10)
 
 print("------------------------------------------------")
 
@@ -37,3 +37,4 @@ print("------------------------------------------------")
 print(manager.is_any_chair_owner_in("Alex"))
 print(manager.is_chair_material_in("wood"))
 set_manager = SetManager(manager)
+

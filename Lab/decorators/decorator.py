@@ -2,19 +2,16 @@
 This is file contains decorator
 """
 import logging
+from functools import wraps
 
 
 def limit_calls(max_calls):
-    """
-    This decorator limits the number of function calls
-    """
     def decorator(func):
         calls = 0
 
+        @wraps(func)
         def wrapper(*args, **kwargs):
             nonlocal calls
-            x = 7
-            print(f"value: {x}")
             if calls < max_calls:
                 calls += 1
                 return func(*args, **kwargs)
@@ -27,10 +24,7 @@ def limit_calls(max_calls):
 
 
 def count_arguments(func):
-    """
-    This decorator checks and prints the number of
-    method arguments before calling it
-    """
+    @wraps(func)
     def wrapper(*args, **kwargs):
         num_args = len(args) - 1
         num_kwargs = len(kwargs)
@@ -43,15 +37,16 @@ def count_arguments(func):
 
 def logged(exception, mode):
     def decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
             except exception as exp:
                 if mode == "console":
-                    logging.error(str(exp))
+                    logging.error(exp)
                 elif mode == "file":
                     logging.basicConfig(filename="error.log", level=logging.ERROR)
-                    logging.error(str(exp))
+                    logging.error(exp)
                 else:
                     raise ValueError("Invalid logging mode")
 

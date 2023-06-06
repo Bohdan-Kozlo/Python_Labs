@@ -18,6 +18,7 @@ class SetManager:
         Returns the total number of special features.
         """
         if self.index >= len(self.special_features):
+            self.index = 0
             raise StopIteration
         self.index += 1
         return self.special_features[self.index - 1]

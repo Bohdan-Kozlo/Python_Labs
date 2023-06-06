@@ -36,7 +36,8 @@ class ChairManager:
         """
         Returns the next item in the chairs list
         """
-        if self.index - 1 > len(self.chairs):
+        if self.index >= len(self.chairs):
+            self.index = 0
             raise StopIteration
         self.index += 1
         chair = self.chairs[self.index - 1]
@@ -95,4 +96,3 @@ class ChairManager:
          Checks if any chair has the specified owner.
         """
         return any([chair.owner is owner for chair in self.chairs])
-
